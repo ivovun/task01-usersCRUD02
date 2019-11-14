@@ -13,17 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
 
 
-//@WebServlet(name = "UserServlet",  urlPatterns = {"/", "/home"})
-@WebServlet(name = "UserServlet",  urlPatterns = {"/", "/home"})
+ @WebServlet(name = "UserServlet",  urlPatterns = {"/", "/home"})
 public class UserServlet extends HttpServlet {
 
 	private UserService instance = new UserServiceImpl();
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

@@ -10,11 +10,6 @@ public class Executor {
         this.connection = connection;
     }
 
-    public void execUpdate(String update) throws SQLException {
-        Statement stmt = connection.createStatement();
-        stmt.execute(update);
-        stmt.close();
-    }
 
     public void execUpdatePrepared(String update, Object[] params) throws SQLException {
         connection.setAutoCommit(false);
