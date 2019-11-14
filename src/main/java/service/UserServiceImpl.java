@@ -8,20 +8,24 @@ import util.DBHelper;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
-    private static UserServiceImpl userService;
+    private static UserService userService;
 
-    public UserServiceImpl() {
-    }
-
-    public static synchronized UserServiceImpl instance() {
+    public  UserService instance() {
         if (userService == null) {
             userService = new UserServiceImpl();
         }
         return userService;
     }
 
+
+    public UserServiceImpl() {
+    }
+
+
+
+    @Override
     public boolean insertUser(User user) throws DBException {
         try {
             UserServiceImpl.getUserDaoImpl().insertUser(user);
@@ -32,14 +36,17 @@ public class UserServiceImpl {
     }
 
 
+    @Override
     public User selectUser(long id) throws DBException {
         return UserServiceImpl.getUserDaoImpl().selectUser(id);
     }
 
+    @Override
     public List<User> selectAllUsers() {
         return UserServiceImpl.getUserDaoImpl().selectAllUsers();
     }
 
+    @Override
     public void deleteUser(long id) throws DBException {
         try {
             UserServiceImpl.getUserDaoImpl().deleteUser(id);
@@ -48,6 +55,7 @@ public class UserServiceImpl {
         }
     }
 
+    @Override
     public void updateUser(User user) throws DBException {
         try {
             UserServiceImpl.getUserDaoImpl().updateUser(user);

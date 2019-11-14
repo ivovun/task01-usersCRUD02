@@ -3,6 +3,7 @@ package web;
 import dao.UserDaoImpl;
 import exception.DBException;
 import model.User;
+import service.UserService;
 import service.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -20,6 +21,8 @@ import java.util.List;
 //@WebServlet(name = "UserServlet",  urlPatterns = {"/", "/home"})
 @WebServlet(name = "UserServlet",  urlPatterns = {"/", "/home"})
 public class UserServlet extends HttpServlet {
+
+	private UserService instance = new UserServiceImpl();
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -59,8 +62,7 @@ public class UserServlet extends HttpServlet {
 
 	private void listUser(HttpServletRequest request, HttpServletResponse response)
 			throws  IOException, ServletException {
-		List<User> listUser = UserServiceImpl.instance().selectAllUsers();
-		request.setAttribute("listUser", listUser);
+		request.setAttribute("listUser", instance.selectAllUsers());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -74,14 +76,14 @@ public class UserServlet extends HttpServlet {
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws  ServletException, IOException, DBException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
-		request.setAttribute("user", UserServiceImpl.instance().selectUser(Integer.parseInt(request.getParameter("id"))));
+		request.setAttribute("user", instance.selectUser(Integer.parseInt(request.getParameter("id"))));
 		dispatcher.forward(request, response);
 
 	}
 
 	private void insertUser(HttpServletRequest request, HttpServletResponse response)
 			throws  IOException, DBException {
-		UserServiceImpl.instance().insertUser(new User(request.getParameter("name")
+		instance.insertUser(new User(request.getParameter("name")
 				, request.getParameter("email")
 				, request.getParameter("country")));
 		response.sendRedirect("list");
@@ -89,7 +91,7 @@ public class UserServlet extends HttpServlet {
 
 	private void updateUser(HttpServletRequest request, HttpServletResponse response)
 			throws DBException, IOException {
-		UserServiceImpl.instance().updateUser(new User(Long.valueOf(request.getParameter("id")),
+		instance.updateUser(new User(Long.valueOf(request.getParameter("id")),
 				request.getParameter("name"),
 				request.getParameter("email"),
 				request.getParameter("country")));
@@ -98,7 +100,7 @@ public class UserServlet extends HttpServlet {
 
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response)
 			throws IOException,  DBException  {
-		UserServiceImpl.instance().deleteUser(Integer.parseInt(request.getParameter("id")));
+		instance.deleteUser(Integer.parseInt(request.getParameter("id")));
 		response.sendRedirect("list");
 
 	}
