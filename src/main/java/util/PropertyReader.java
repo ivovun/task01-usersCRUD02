@@ -9,7 +9,6 @@ public class PropertyReader {
         try {
             String rootPath = Thread.currentThread().getContextClassLoader().getResource("config.properties").getPath();
             Properties property = new Properties();
-
             property.load(new FileInputStream(rootPath));
             return property.getProperty(prop);
         } catch (IOException | NullPointerException e) {

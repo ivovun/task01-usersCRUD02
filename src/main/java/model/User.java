@@ -7,7 +7,7 @@ package model;
  *
  */
 public class User {
-	private int id;
+	private long id;
 	private String name;
 	private String email;
 	private String country;
@@ -22,7 +22,7 @@ public class User {
 		this.country = country;
 	}
 
-	public User(int id, String name, String email, String country) {
+	public User(long id, String name, String email, String country) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -30,7 +30,7 @@ public class User {
 		this.country = country;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	public void setId(int id) {

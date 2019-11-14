@@ -1,7 +1,9 @@
 package web;
 
 import dao.UserDaoImpl;
+import exception.DBException;
 import model.User;
+import service.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,11 +21,6 @@ import java.util.List;
 @WebServlet(name = "UserServlet",  urlPatterns = {"/", "/home"})
 public class UserServlet extends HttpServlet {
 
-	private UserDaoImpl userDAO;
-	
-	public void init() {
-		userDAO = new UserDaoImpl();
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -55,14 +52,14 @@ public class UserServlet extends HttpServlet {
 				listUser(request, response);
 				break;
 			}
-		} catch (SQLException ex) {
+		} catch (  DBException ex) {
 			throw new ServletException(ex);
 		}
 	}
 
 	private void listUser(HttpServletRequest request, HttpServletResponse response)
 			throws  IOException, ServletException {
-		List<User> listUser = userDAO.selectAllUsers();
+		List<User> listUser = UserServiceImpl.instance().selectAllUsers();
 		request.setAttribute("listUser", listUser);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
 		dispatcher.forward(request, response);
@@ -75,41 +72,33 @@ public class UserServlet extends HttpServlet {
 	}
 
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-			throws  ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		User existingUser = userDAO.selectUser(id);
+			throws  ServletException, IOException, DBException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
-		request.setAttribute("user", existingUser);
+		request.setAttribute("user", UserServiceImpl.instance().selectUser(Integer.parseInt(request.getParameter("id"))));
 		dispatcher.forward(request, response);
 
 	}
 
 	private void insertUser(HttpServletRequest request, HttpServletResponse response)
-			throws  IOException {
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		String country = request.getParameter("country");
-		User newUser = new User(name, email, country);
-		userDAO.insertUser(newUser);
+			throws  IOException, DBException {
+		UserServiceImpl.instance().insertUser(new User(request.getParameter("name")
+				, request.getParameter("email")
+				, request.getParameter("country")));
 		response.sendRedirect("list");
 	}
 
 	private void updateUser(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		String country = request.getParameter("country");
-
-		User book = new User(id, name, email, country);
-		userDAO.updateUser(book);
+			throws DBException, IOException {
+		UserServiceImpl.instance().updateUser(new User(Long.valueOf(request.getParameter("id")),
+				request.getParameter("name"),
+				request.getParameter("email"),
+				request.getParameter("country")));
 		response.sendRedirect("list");
 	}
 
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		userDAO.deleteUser(id);
+			throws IOException,  DBException  {
+		UserServiceImpl.instance().deleteUser(Integer.parseInt(request.getParameter("id")));
 		response.sendRedirect("list");
 
 	}

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="tomcat_maven_jsp_servlets_JDBC_task1@localhost" uuid="450ebc94-631b-4b3e-99ae-90e75984a542">
+    <data-source source="LOCAL" name="task01_usersCRUD02@localhost" uuid="450ebc94-631b-4b3e-99ae-90e75984a542">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/tomcat_maven_jsp_servlets_JDBC_task1?serverTimezone=UTC</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/task01_usersCRUD02?serverTimezone=UTC</jdbc-url>
     </data-source>
   </component>
 </project>
