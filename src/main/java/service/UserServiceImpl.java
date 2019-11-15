@@ -9,8 +9,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-
     private static UserService userService;
+
+    public UserServiceImpl() {
+    }
 
     public  UserService instance() {
         if (userService == null) {
@@ -19,11 +21,9 @@ public class UserServiceImpl implements UserService {
         return userService;
     }
 
-
-    public UserServiceImpl() {
+    private static UserDaoImpl getUserDaoImpl() {
+        return new UserDaoImpl(DBHelper.getConnection());
     }
-
-
 
     @Override
     public boolean insertUser(User user) throws DBException {
@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
             throw new DBException(e);
         }
     }
-
 
     @Override
     public User selectUser(long id) throws DBException {
@@ -63,12 +62,5 @@ public class UserServiceImpl implements UserService {
             throw new DBException(e);
         }
     }
-
-
-
-    private static UserDaoImpl getUserDaoImpl() {
-        return new UserDaoImpl(DBHelper.getConnection());
-    }
-
 
 }
