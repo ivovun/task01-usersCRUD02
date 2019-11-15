@@ -88,21 +88,6 @@ public class Executor {
                 }
             }
         }
-
-
-//
-//
-//
-//        PreparedStatement stmt = connection.prepareStatement(query);
-//        for (int i = 0; i < params.length; i++) {
-//            stmt.setObject(i + 1, params[i]);
-//        }
-//        ResultSet result = stmt.executeQuery();
-//        T value = handler.handle(result);
-//        result.close();
-//        stmt.close();
-//
-//        return value;
     }
 
 }
