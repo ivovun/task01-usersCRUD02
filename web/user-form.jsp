@@ -5,31 +5,13 @@
 <html>
 <head>
 	<title>User Management Application</title>
-	<STYLE type="text/css">
-		html, body  {
-			width: 100%;
-		}
-		table , tr , th , td {
-			margin: 0 auto;
-			border: 1px solid black;
-			text-align: center;
-			justify-content: center;
-			padding: 5px ;
-		}
-		div {
-			text-align: center;
-			justify-content: center
-		}
-	</STYLE>
-	<link rel="stylesheet"   href="style.css">
+	<style><%@include file="/css/style.css"%></style>
 </head>
 <body>
-
-    <div  >
-
+    <div >
 		<h1>User Management</h1>
 		<h2>
-			<a href="new">Add New User</a>
+<%--			<a href="insert">Add New User</a>--%>
 			&nbsp;&nbsp;&nbsp;
 			<a href="list">List All Users</a>
 
@@ -47,9 +29,9 @@
             		<c:if test="${user != null}">
             			Edit User
             		</c:if>
-            		<c:if test="${user == null}">
-            			Add New User
-            		</c:if>
+<%--            		<c:if test="${user == null}">--%>
+<%--            			Add New User--%>
+<%--            		</c:if>--%>
             	</h2>
             </caption>
         		<c:if test="${user != null}">

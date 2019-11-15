@@ -17,7 +17,7 @@ public class UserInsertServlet extends HttpServlet {
     private UserService instance = new UserServiceImpl();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
         try {
             instance.insertUser(new User(req.getParameter("name")
                     , req.getParameter("email")
