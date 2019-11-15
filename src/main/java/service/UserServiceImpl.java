@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-
     private static UserDaoImpl getUserDaoImpl() {
         return new UserDaoImpl(DBHelper.getConnection());
     }
