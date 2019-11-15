@@ -4,19 +4,39 @@
 <html>
 <head>
 	<title>User Management Application</title>
+<%--    <jsp:useBean id="someModel" scope="request" type="model.User"/>--%>
+    <STYLE type="text/css">
+        html, body {
+            width: 100%;
+        }
+        table , tr , th , td {
+            margin: 0 auto;
+            border: 1px solid black;
+            text-align: center;
+            justify-content: center;
+            padding: 5px ;
+        }
+        div {
+            text-align: center;
+            justify-content: center
+        }
+    </STYLE>
+    <link rel="stylesheet"   href="style.css">
+
 </head>
 <body>
-	<center>
-		<h1>User Management</h1>
+
+    <div >
+
+        <h1>User Management</h1>
         <h2>
-        	<a href="new">Add New User</a>
-        	&nbsp;&nbsp;&nbsp;
-        	<a href="list">List All Users</a>
-        	
+            <a href="new">Add New User</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="list">List All Users</a>
+
         </h2>
-	</center>
-    <div align="center">
-        <table border="1" cellpadding="5">
+
+        <table    >
             <caption><h2>List of Users</h2></caption>
             <tr>
                 <th>ID</th>

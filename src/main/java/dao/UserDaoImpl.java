@@ -24,11 +24,11 @@ public class UserDaoImpl implements UserDao {
 	public User selectUser(Long id) {
 		try {
 			return executor.execQueryPrepared("select id,name,email,country from users where id =?",
-					new Object[] {Long.valueOf(id)}, result -> {
+					new Object[] {id}, result -> {
 						if (!result.next()) {
 							return null;
 						}
-						return new User(Long.valueOf( result.getString("id")), result.getString("name"),
+						return new User( result.getString("id"), result.getString("name"),
 								result.getString("email"),
 								result.getString("country"));
 					});
@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao {
 			return executor.execQueryPrepared("select * from users where ?", new Object[] {true} , result -> {
 				List<User> users = new ArrayList<>();
 				while (result.next()) {
-					users.add(new User(Long.valueOf(result.getString("id")),result.getString("name"),
+					users.add(new User(result.getString("id"),result.getString("name"),
 							result.getString("email"),
 							result.getString("country")));
 				}
@@ -67,7 +67,6 @@ public class UserDaoImpl implements UserDao {
 		executor.execUpdatePrepared("update users set name = ?,email= ?, country =? where id = ?;",
 				new Object[] {user.getName(), user.getEmail(), user.getCountry(), user.getId()});
 		return true;
-
 	}
 
 	private void printSQLException(SQLException ex) {

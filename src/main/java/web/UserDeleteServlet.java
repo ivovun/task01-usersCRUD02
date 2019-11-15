@@ -19,9 +19,9 @@ public class UserDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             instance.deleteUser(Integer.parseInt(req.getParameter("id")));
+            resp.sendRedirect("list");
         } catch (DBException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("list");
     }
 }

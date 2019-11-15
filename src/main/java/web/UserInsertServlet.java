@@ -22,9 +22,9 @@ public class UserInsertServlet extends HttpServlet {
             instance.insertUser(new User(req.getParameter("name")
                     , req.getParameter("email")
                     , req.getParameter("country")));
+            resp.sendRedirect("list");
         } catch (DBException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("list");
     }
 }
