@@ -18,11 +18,9 @@ public class UserEditServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("user-form.jsp");
-
         try {
             req.setAttribute("user", instance.selectUser(Integer.parseInt(req.getParameter("id"))));
-            dispatcher.forward(req, resp);
+            req.getRequestDispatcher("user-form.jsp").forward(req, resp);
         } catch (DBException e) {
             e.printStackTrace();
         }

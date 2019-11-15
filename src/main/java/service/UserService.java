@@ -6,9 +6,6 @@ import model.User;
 import java.util.List;
 
 public interface UserService {
-
-    UserService instance();
-
     boolean insertUser(User user) throws DBException;
 
     User selectUser(long id) throws DBException;

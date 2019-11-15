@@ -6,7 +6,7 @@
 <head>
 	<title>User Management Application</title>
 	<STYLE type="text/css">
-		html, body,  {
+		html, body  {
 			width: 100%;
 		}
 		table , tr , th , td {
@@ -35,7 +35,7 @@
 
 		</h2>
 
-		<c:if test="${user != null}">
+		<c:if  test="${user != null}">
 			<form action="update" method="post">
         </c:if>
         <c:if test="${user == null}">

@@ -9,17 +9,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private static UserService userService;
-
-    public UserServiceImpl() {
-    }
-
-    public  UserService instance() {
-        if (userService == null) {
-            userService = new UserServiceImpl();
-        }
-        return userService;
-    }
 
     private static UserDaoImpl getUserDaoImpl() {
         return new UserDaoImpl(DBHelper.getConnection());
@@ -28,7 +17,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean insertUser(User user) throws DBException {
         try {
-            UserServiceImpl.getUserDaoImpl().insertUser(user);
+             getUserDaoImpl().insertUser(user);
             return true;
         } catch (SQLException e) {
             throw new DBException(e);
@@ -37,18 +26,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User selectUser(long id) throws DBException {
-        return UserServiceImpl.getUserDaoImpl().selectUser(id);
+        return getUserDaoImpl().selectUser(id);
     }
 
     @Override
     public List<User> selectAllUsers() {
-        return UserServiceImpl.getUserDaoImpl().selectAllUsers();
+        return getUserDaoImpl().selectAllUsers();
     }
 
     @Override
     public void deleteUser(long id) throws DBException {
         try {
-            UserServiceImpl.getUserDaoImpl().deleteUser(id);
+            getUserDaoImpl().deleteUser(id);
         } catch (SQLException e) {
             throw new DBException(e);
         }
@@ -57,7 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(User user) throws DBException {
         try {
-            UserServiceImpl.getUserDaoImpl().updateUser(user);
+            getUserDaoImpl().updateUser(user);
         } catch (SQLException e) {
             throw new DBException(e);
         }
