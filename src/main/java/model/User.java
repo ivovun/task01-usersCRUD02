@@ -1,11 +1,6 @@
 package model;
 
-/**
- * User.java
- * This is a model class represents a User entity
- * @author Ramesh Fadatare
- *
- */
+
 public class User {
 	private long id;
 	private String name;

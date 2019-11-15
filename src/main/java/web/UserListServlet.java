@@ -15,11 +15,6 @@ import java.io.IOException;
 public class UserListServlet extends HttpServlet {
     private UserService instance = new UserServiceImpl();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("listUser", instance.selectAllUsers());
