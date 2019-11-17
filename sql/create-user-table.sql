@@ -1,6 +1,5 @@
 
 USE task01_usersCRUD02;
-
 create table users (
 	id  bigint(20) NOT NULL AUTO_INCREMENT,
 	name varchar(120) NOT NULL,
