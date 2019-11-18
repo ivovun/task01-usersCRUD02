@@ -13,11 +13,11 @@ import java.io.IOException;
 
 @WebServlet(name = "UsersListServlet",  urlPatterns = {"/", "/list"})
 public class UserListServlet extends HttpServlet {
-    private UserService instance = new UserServiceImpl();
+    private UserService userService = new UserServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("listUser", instance.selectAllUsers());
+        req.setAttribute("listUser", userService.selectAllUsers());
         req.getRequestDispatcher("user-list.jsp").forward(req, resp);
     }
 }
